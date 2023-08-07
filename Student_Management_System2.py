@@ -24,19 +24,19 @@ def validate_student_course_ids(func):
 
 class StudentManagementSystem:
     def __init__(self):
-        self.students = {}  # Dictionary to store students with student_id as key
-        self.courses = {}   # Dictionary to store courses with course_id as key
-        self.enrollments = []  # List to store enrollment information as tuples (student_id, course_id)
+        self.students = {}  # Dictionary that stores students with student_id as key
+        self.courses = {}   # Dictionary that stores courses with course_id as key
+        self.enrollments = []  # List that stores enrollment information as a tuple (student_id, course_id)
 
     def add_student(self, student_id, first_name, last_name, age, email, phone):
         if student_id in self.students:
-            raise ValueError("Student ID already exists. Please use a unique ID.")
+            raise ValueError("Student ID already exists. Please use a different ID.")
         student = Student(student_id, first_name, last_name, age, email, phone)
         self.students[student_id] = student
 
     def add_course(self, course_id, course_name, credits):
         if course_id in self.courses:
-            raise ValueError("Course ID already exists. Please use a unique ID.")
+            raise ValueError("Course ID already exists. Please use a different ID.")
         course = Course(course_id, course_name, credits)
         self.courses[course_id] = course
 
@@ -73,7 +73,7 @@ class StudentManagementSystem:
     def get_enrollments(self):
         return self.enrollments
 
-# Example usage
+# Examples
 if __name__ == "__main__":
     try:
         sms = StudentManagementSystem()
@@ -81,11 +81,11 @@ if __name__ == "__main__":
         sms.add_student(1, "John", "Doe", 20, "john@example.com", "1234567890")
         sms.add_student(2, "Jane", "Smith", 22, "jane@example.com", "9876543210")
 
-        sms.add_course(1, "Mathematics", 4)
-        sms.add_course(2, "Physics", 3)
+        sms.add_course(1, "Maths", 6)
+        sms.add_course(2, "Chemistry", 3)
 
-        sms.enroll_student(1, 1)  # John enrolls in Mathematics
-        sms.enroll_student(2, 1)  # Jane enrolls in Mathematics
+        sms.enroll_student(1, 1)  # John enrolls in Maths
+        sms.enroll_student(2, 1)  # Jane enrolls in Maths
         sms.enroll_student(2, 2)  # Jane enrolls in Physics
 
         # Retrieve data using generators
