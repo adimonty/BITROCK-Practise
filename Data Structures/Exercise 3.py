@@ -1,14 +1,4 @@
 def rev_chunk(sample_list):
-  """
-  This function takes a list as input and improves the code
-  that reverses the chunks of the list.
-
-  Args:
-    sample_list: The list to be improved.
-
-  Returns:
-    None.
-  """
 
   length = len(sample_list)
   chunk_size = int(length / 3)
