@@ -1,20 +1,26 @@
+def check_subset_superset(first_set, second_set):
+
+  is_subset = first_set.issubset(second_set)
+  is_superset = first_set.issuperset(second_set)
+  is_equal = first_set == second_set
+
+  return is_subset, is_superset, is_equal
+
 first_set = {57, 83, 29}
 second_set = {57, 83, 29, 67, 73, 43, 48}
 
-print("First Set ", first_set)
-print("Second Set ", second_set)
+is_subset, is_superset, is_equal = check_subset_superset(first_set, second_set)
 
-print("First set is subset of second set -", first_set.issubset(second_set))
-print("Second set is subset of First set - ", second_set.issubset(first_set))
+print("First set is subset of second set -", is_subset)
+print("Second set is subset of First set - ", is_superset)
+print("First set is Super set of second set - ", is_superset)
+print("Second set is Super set of First set - ", is_superset)
 
-print("First set is Super set of second set - ", first_set.issuperset(second_set))
-print("Second set is Super set of First set - ", second_set.issuperset(first_set))
+if is_subset:
+  first_set.clear()
 
-if first_set.issubset(second_set):
-    first_set.clear()
-
-if second_set.issubset(first_set):
-    second_set.clear()
+if is_superset:
+  second_set.clear()
 
 print("First Set ", first_set)
 print("Second Set ", second_set)
