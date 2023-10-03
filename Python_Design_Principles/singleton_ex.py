@@ -36,6 +36,7 @@ class ConfigManager:
                 self.configs = json.load(f)
         except FileNotFoundError:
             print("Config file not found, starting with empty config")
+            self.configs = {}  # Initialize with an empty dictionary
 
     def save_config(self):
         with open('config.json', 'w') as f:
@@ -44,4 +45,4 @@ class ConfigManager:
 # Usage
 config = ConfigManager.get_instance()
 config.set_config("language", "English")
-print(config.get_config("language")) # English
+print(config.get_config("language"))  # English
