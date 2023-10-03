@@ -1,48 +1,41 @@
-import json
+import os
 from threading import Lock
 
-class ConfigManager:
+class Logger:
 
     _instance = None
     _lock = Lock()
 
     def __init__(self):
-        if not ConfigManager._instance:
-            print("Initializing configuration...")
-            ConfigManager._instance = self
-            self.configs = {}
-            self.load_config()
+        if not Logger._instance:
+            print("Initializing the logger...")
+            Logger._instance = self
+            self.log_file = "application_log.txt"
         else:
-            raise Exception("Cannot instantiate second singleton class.")
+            raise Exception("Cannot instantiate a second logger instance.")
 
     @classmethod
     def get_instance(cls):
         if not cls._instance:
             with cls._lock:
                 if not cls._instance:
-                    cls._instance = ConfigManager()
+                    cls._instance = Logger()
         return cls._instance
 
-    def get_config(self, key):
-        return self.configs.get(key)
-
-    def set_config(self, key, value):
-        self.configs[key] = value
-        self.save_config()
-
-    def load_config(self):
-        try:
-            with open('config.json') as f:
-                self.configs = json.load(f)
-        except FileNotFoundError:
-            print("Config file not found, starting with empty config")
-            self.configs = {}  # Initialize with an empty dictionary
-
-    def save_config(self):
-        with open('config.json', 'w') as f:
-            json.dump(self.configs, f)
+    def log(self, message):
+        with open(self.log_file, 'a') as f:
+            f.write(message + '\n')
+        print(f"Logged: {message}")
 
 # Usage
-config = ConfigManager.get_instance()
-config.set_config("language", "English")
-print(config.get_config("language"))  # English
+logger = Logger.get_instance()
+
+# Log some messages
+logger.log("Application started.")
+logger.log("User logged in.")
+logger.log("Data processed.")
+
+# Check the log file
+with open(logger.log_file, 'r') as f:
+    print("Log file contents:")
+    print(f.read())
