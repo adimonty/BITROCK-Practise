@@ -13,41 +13,48 @@ class CarBuilder:
     def __init__(self):
         self.car = Car()
 
-    def add_standard_accessories(self):
-        """
-        Add a set of standard accessories to the car.
-        """
-        self.car.add_accessory("ABS")
-        self.car.add_accessory("8 Airbags")
-        self.car.add_accessory("Manual Air Conditioning")
-        self.car.add_accessory("Electric Windows")
-        self.car.add_accessory("Traction Control")
-        self.car.add_accessory("Automatic Headlights")
-
     def add_metallic_paint(self):
         self.car.add_accessory("Metallic Paint")
+        return self
 
     def add_alloy_wheels(self):
         self.car.add_accessory("Alloy Wheels")
+        return self
 
     def add_auto_climate_control(self):
         self.car.add_accessory("Auto Climate Control")
+        return self
 
     def add_multimedia_system(self):
         self.car.add_accessory("Multimedia System")
+        return self
 
     def add_satellite_nav(self):
         self.car.add_accessory("Satellite Navigation")
+        return self
 
     def get_car(self):
         return self.car
 
 
-# Build a car without a director
+# Build a car with different optional configurations
 builder = CarBuilder()
-builder.add_standard_accessories()
-builder.add_metallic_paint()
-builder.add_alloy_wheels()
+full_featured_car = (
+    builder
+    .add_metallic_paint()
+    .add_alloy_wheels()
+    .add_auto_climate_control()
+    .add_multimedia_system()
+    .add_satellite_nav()
+    .get_car()
+)
 
-car = builder.get_car()
-print(car)
+# Add standard accessories
+full_featured_car.add_accessory("ABS")
+full_featured_car.add_accessory("8 Airbags")
+full_featured_car.add_accessory("Manual Air Conditioning")
+full_featured_car.add_accessory("Electric Windows")
+full_featured_car.add_accessory("Traction Control")
+full_featured_car.add_accessory("Automatic Headlights")
+
+print(full_featured_car)
